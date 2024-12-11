@@ -14,6 +14,7 @@ function displayMemo(memo) {
   editBtn.dataset.id = memo.id;
 
   ul.appendChild(li);
+  li.appendChild(editBtn);
 }
 
 async function readMemo() {
