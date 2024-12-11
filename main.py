@@ -22,8 +22,10 @@ async def read_memo():
 
 @app.put("/memo/{id}")
 def put_memo(memo:Memo):
-    for memo in memos:
-        if memo.id==id:
-            memo.content=
+    for m in memos:
+        if m.id==id:
+            m.content=memo.content
+            return '성공했습니다'
+    return '그런 메모는 없습니다'
 
 app.mount("/",StaticFiles(directory="static",html=True),name="static")
