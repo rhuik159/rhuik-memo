@@ -1,5 +1,16 @@
 function editMemo(event) {
-  console.log(event.target.data.id);
+  const id = event.target.dataset.id;
+  const editInput = prompt("수정할 값을 입력하세요");
+  const res = await fetch(`/memo/${id}`, {
+    method: "PUT",
+    headers: {
+      "Constent-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id,
+      content:editInput,
+    })
+  });
 }
 
 function displayMemo(memo) {
