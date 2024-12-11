@@ -1,7 +1,18 @@
-async function displayMemo(memo) {
+function editMemo(event) {
+  console.log(event.target);
+}
+
+function displayMemo(memo) {
   const ul = document.querySelector("#memo-ul");
   const li = document.createElement("li");
+
+  const editBtn = document.createElement("button");
   li.innerText = `[id:${memo.id}]${memo.content}`;
+
+  editBtn.innerText = "수정하기";
+  editBtn.addEventListener("click", editMemo);
+  editBtn.dataset.id = memo.id;
+
   ul.appendChild(li);
 }
 
