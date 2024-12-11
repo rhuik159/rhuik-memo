@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 class Memo(BaseModel):
     id:str
     content:str
+    
 
 memos = []
 

@@ -1,5 +1,5 @@
 function editMemo(event) {
-  console.log(event.target);
+  console.log(event.target.data.id);
 }
 
 function displayMemo(memo) {
