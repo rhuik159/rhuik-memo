@@ -1,15 +1,15 @@
-function editMemo(event) {
+async function editMemo(event) {
   const id = event.target.dataset.id;
   const editInput = prompt("수정할 값을 입력하세요");
-  const res = await fetch(`/memo/${id}`, {
+  const res = await fetch(`/memos/${id}`, {
     method: "PUT",
     headers: {
       "Constent-Type": "application/json",
     },
     body: JSON.stringify({
       id,
-      content:editInput,
-    })
+      content: editInput,
+    }),
   });
 }
 
@@ -24,7 +24,13 @@ function displayMemo(memo) {
   editBtn.addEventListener("click", editMemo);
   editBtn.dataset.id = memo.id;
 
+  const delBtn = document.createElement("button");
+  delBtn.innerText = "삭제";
+  delBtn.addEventListener("click", deleteMemo);
+  delBtn.dataset.id = memo.id;
+
   ul.appendChild(li);
+  li.appendChild(delBtn);
   li.appendChild(editBtn);
 }
 
@@ -41,6 +47,14 @@ async function createMemo(value) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id: new Date().getTime(), content: value }),
+  });
+  readMemo();
+}
+
+async function deleteMemo(event) {
+  const id = event.target.dataset.id;
+  const res = await fetch(`/memos/${id}`, {
+    method: "DELETE",
   });
   readMemo();
 }
